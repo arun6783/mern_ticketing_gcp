@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
 import { BadRequestError } from '../errors/badrequest-error'
-import { DatabaseConnectionError } from '../errors/database-connection-error'
 import { RequestValidationError } from '../errors/request-validation-errors'
 import { User } from '../models/users'
-
+import jwt from 'jsonwebtoken'
 const router = express.Router()
 
 router.post(
@@ -33,6 +32,13 @@ router.post(
 
     const user = User.build({ email, password })
     await user.save()
+
+    const userJwt = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_KEY!
+    )
+
+    req.session = { jwt: userJwt }
 
     res.status(201).send(user)
 

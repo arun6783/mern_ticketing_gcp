@@ -9,10 +9,19 @@ import { signinRouter } from './routes/signin'
 import { signoutRouter } from './routes/signout'
 import { signupRouter } from './routes/signup'
 import { connectDB } from './db/connect'
-import mongoose, { ConnectOptions } from 'mongoose'
+import cookieSession from 'cookie-session'
+
 dotenv.config()
 const app = express()
+app.set('trust proxy', true)
 app.use(json())
+
+app.use(
+  cookieSession({
+    signed: false,
+    secure: false,
+  })
+)
 const port = 3000
 
 app.use(currentUserRouter)
@@ -26,6 +35,9 @@ app.all('*', async () => {
 app.use(errorHandler)
 
 const start = async () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined')
+  }
   try {
     await connectDB(process.env.ATLAS_URI ?? '')
     console.log('Connected to MongoDb')

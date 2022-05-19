@@ -16,6 +16,12 @@ spec:
         - name: auth
           image: arun6783/auth
           # image: us.gcr.io/ticketing-mern-dev/auth
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 kind: Service
 apiVersion: v1
@@ -29,20 +35,3 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: busybox
-#   namespace: default
-# spec:
-#   containers:
-#     - image: busybox
-#       command:
-#         - sleep
-#         - '3600'
-#       imagePullPolicy: IfNotPresent
-#       name: busybox
-#   restartPolicy: Always
-#   hostNetwork: true
-#   dnsPolicy: ClusterFirstWithHostNet
