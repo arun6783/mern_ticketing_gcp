@@ -15,16 +15,28 @@ interface UserDoc extends mongoose.Document {
   password: string
 }
 
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-})
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id
+        delete ret._id
+        delete ret.password
+        delete ret.__v
+      },
+    },
+  }
+)
 
 //quick reminder this function keyword helps to use this keyword inside the method. if you use arrow function, then this keyword is not related
 userSchema.pre('save', async function (done) {
