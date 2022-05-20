@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: arun6783/auth
+          image: arun6783/ticketing-auth
           # image: us.gcr.io/ticketing-mern-dev/auth
           env:
             - name: JWT_KEY
