@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import useRequest from '../../hooks/use-request'
 import Router from 'next/router'
 
-const SignUp = () => {
+function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signup',
+    url: '/api/users/signin',
     method: 'post',
     body: { email, password },
     onSuccess: () => Router.push('/'),
@@ -37,10 +37,9 @@ const SignUp = () => {
         />
       </div>
       {errors}
-      <button className="btn btn-primary">Sign Up</button>
+      <button className="btn btn-primary">Sign in</button>
     </form>
   )
 }
 
-SignUp.getInitialProps = (context) => {}
-export default SignUp
+export default SignIn

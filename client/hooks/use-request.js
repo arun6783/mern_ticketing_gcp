@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import axios from 'axios'
-import Router from 'next/router'
 const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null)
   const doRequest = async () => {
@@ -16,7 +15,7 @@ const useRequest = ({ url, method, body, onSuccess }) => {
         <div className="alert alert-danger">
           <h4>Ooops.....</h4>
           <ul className="my-0">
-            {errors.response.data.map((err) => (
+            {errors?.response?.data?.map((err) => (
               <li key={err.message}> {err.message}</li>
             ))}
           </ul>
