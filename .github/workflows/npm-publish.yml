@@ -9,6 +9,9 @@ on:
       - master
     paths:
       - 'common/**'
+defaults:
+  run:
+    working-directory: common
 
 jobs:
   build:
