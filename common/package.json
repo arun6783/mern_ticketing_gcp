@@ -1,6 +1,6 @@
 {
-  "name": "@aarcharconsulting/justix-common",
-  "version": "1.0.3",
+  "name": "@arun6783-justix/common",
+  "version": "1.0.4",
   "description": "common library to help with authorization in different ticketing project",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -13,7 +13,7 @@
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
   },
   "keywords": [],
-  "author": "aarcharconsulting",
+  "author": "arun6783",
   "license": "ISC",
   "devDependencies": {
     "del-cli": "^4.0.1",
