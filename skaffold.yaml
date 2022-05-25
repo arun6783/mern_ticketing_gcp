@@ -19,19 +19,19 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
-    - image: arun6783/ticketing-client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - dest: .
-            src: '**/*.js'
     - image: arun6783/ticketing-tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: .
-            src: 'src/**/*.ts'
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: arun6783/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
