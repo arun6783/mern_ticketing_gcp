@@ -9,6 +9,9 @@ import {
 } from '@sanguinee06-justix/common'
 import { createTicketRouter } from './routes/new'
 import cookieSession from 'cookie-session'
+import { showTicketRouter } from './routes/show'
+import { getTicketsRoute } from './routes'
+import { updateTicketRoute } from './routes/update'
 
 dotenv.config()
 const app = express()
@@ -21,9 +24,12 @@ app.use(
     secure: false, //process.env.NODE_ENV
   })
 )
-app.use(currentUser)
 
+app.use(currentUser)
 app.use(createTicketRouter)
+app.use(showTicketRouter)
+app.use(getTicketsRoute)
+app.use(updateTicketRoute)
 app.all('*', async () => {
   throw new NotFoundError()
 })
