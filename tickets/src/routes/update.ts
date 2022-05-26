@@ -6,6 +6,7 @@ import {
 } from '@sanguinee06-justix/common'
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
+import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher'
 import { Ticket } from '../models/ticket'
 
 const router = express.Router()
@@ -35,6 +36,11 @@ router.put(
     ticket.set({ title: req.body.title, price: req.body.price })
 
     await ticket.save()
+    new TicketCreatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+    })
 
     res.status(200)
   }
