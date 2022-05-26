@@ -1,5 +1,5 @@
 import { connect, Message } from 'node-nats-streaming'
-import { TicketCreatedPublisher } from './events/ticket-created-publisher'
+import { TicketCreatedPublisher } from '@sanguinee06-justix/common'
 console.clear()
 const stan = connect('ticketing', 'abc', {
   url: 'http://localhost:4222',
@@ -12,7 +12,7 @@ stan.on('connect', async () => {
   try {
     await publisher.publish({
       id: '123',
-      title: 'New Concert',
+      title: 'New Concert using common',
       price: 200,
     })
   } catch (err) {

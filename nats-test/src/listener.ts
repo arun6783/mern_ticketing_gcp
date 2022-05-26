@@ -1,6 +1,6 @@
 import { connect, Message, Stan } from 'node-nats-streaming'
 import { randomBytes } from 'crypto'
-import { TicketCreatedListener } from './events/tickets-created-listener'
+import { TicketCreatedListener } from '@sanguinee06-justix/common'
 console.clear()
 const stan = connect('ticketing', randomBytes(4).toString('hex'), {
   url: 'http://localhost:4222',
