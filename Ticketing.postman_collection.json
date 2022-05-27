@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "2673b387-6fd6-45a4-9cbf-44b3fd72b063",
+		"name": "Ticketing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetCurrentUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"@a.com\",\r\n    \"password\": \"sdddds\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.dev/api/users/signup",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"dev"
+					],
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewUsersignup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"dasdddd3asg@test.com\",\r\n    \"password\": \"test12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.local/api/users/signup",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"dasdddd3asg@test.com\" , \"password\": \"test12345\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.local/api/users/signin",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentUser",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://ticketing.local/api/users/currentuser",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"users",
+						"currentuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://ticketing.local/api/users/signout",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"users",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTicket",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://ticketing.local/api/tickets/{{ticketid}}",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"{{ticketid}}"
+					],
+					"query": [
+						{
+							"key": "Cookie",
+							"value": "\"session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update ticket",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"price\":10, \"title\": \"Testing event updated\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.local/api/tickets/{{ticketid}}",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"{{ticketid}}"
+					],
+					"query": [
+						{
+							"key": "Cookie",
+							"value": "\"session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"pm.globals.set(\"ticketid\",jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"price\":10, \"title\": \"Testing event updated\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.local/api/tickets",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "Cookie",
+							"value": "\"session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
