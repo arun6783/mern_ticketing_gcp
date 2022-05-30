@@ -2,6 +2,8 @@ import 'express-async-errors'
 import { app } from './app'
 import { connectDB } from './db/connect'
 import { natsWrapper } from './nats-wrapper'
+import { TicketCreatedEventListener } from './events/listeners/ticket-created-listener'
+import { TicketUpdatedEventListener } from './events/listeners/ticket-updated-listener'
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -35,6 +37,9 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client!.close())
     process.on('SIGTERM', () => natsWrapper.client!.close())
 
+    new TicketCreatedEventListener(natsWrapper.client).listen()
+
+    new TicketUpdatedEventListener(natsWrapper.client).listen()
     await connectDB(process.env.MONGO_URI)
     console.log('Connected to MongoDb')
   } catch (err) {
