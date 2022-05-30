@@ -33,7 +33,7 @@ it('marks an order as cancelled', async () => {
   expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled)
 })
 
-it('emits an order cancelled event after order is cancelled', async () => {
+it('emits a order cancelled event', async () => {
   const ticket = Ticket.build({
     title: 'concert',
     price: 20,
@@ -54,11 +54,6 @@ it('emits an order cancelled event after order is cancelled', async () => {
     .set('Cookie', user)
     .send()
     .expect(204)
-
-  // expectation to make sure the thing is cancelled
-  const updatedOrder = await Order.findById(order.id)
-
-  expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled)
 
   expect(natsWrapper.client.publish).toHaveBeenCalled()
 })

@@ -49,6 +49,7 @@ it('reserves a ticket', async () => {
     .send({ ticketId: ticket.id })
     .expect(201)
 })
+
 it('emits an order created event', async () => {
   const ticket = Ticket.build({
     title: 'concert',

@@ -6,15 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "GetCurrentUser",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": null
-			},
-			"response": []
-		},
-		{
 			"name": "Signup",
 			"request": {
 				"method": "POST",
@@ -245,7 +236,8 @@
 					"script": {
 						"exec": [
 							"    var jsonData = pm.response.json();\r",
-							"pm.globals.set(\"ticketid\",jsonData.id);"
+							"pm.globals.set(\"ticketid\",jsonData.id);\r",
+							"pm.globals.set('ticket',jsonData)"
 						],
 						"type": "text/javascript"
 					}
@@ -287,6 +279,102 @@
 							"value": "\"session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=\"",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"pm.globals.set(\"ticketid\",jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"ticketId\":\"{{ticketid}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ticketing.local/api/orders",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "Cookie",
+							"value": "\"session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall5T0dVeU5UQm1ObUl3TVRBNE1EQXhZVGsxT0dKaE5pSXNJbVZ0WVdsc0lqb2laR05BWkdNdVkyOXRJaXdpYVdGMElqb3hOalV6TkRneU56WTNmUS5QOXhPQnhDYThzd1J4ODZXOHJRUE1zVUJJdlFnMEYxUy1GNHBCcEg1RlFFIn0=\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ORDERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://ticketing.local/api/orders",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://ticketing.local/api/orders/{{ticketid}}",
+					"protocol": "http",
+					"host": [
+						"ticketing",
+						"local"
+					],
+					"path": [
+						"api",
+						"orders",
+						"{{ticketid}}"
 					]
 				}
 			},

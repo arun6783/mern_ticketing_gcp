@@ -4,6 +4,6 @@ import {
   Subjects,
 } from '@sanguinee06-justix/common'
 
-export class OrderCreatdPublisher extends Publisher<OrderCreatedEvent> {
-  readonly subject = Subjects.OrderCreated
+export class OrderCreatedPublisher extends Publisher<OrderCreatedEvent> {
+  subject: Subjects.OrderCreated = Subjects.OrderCreated
 }

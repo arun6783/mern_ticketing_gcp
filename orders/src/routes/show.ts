@@ -4,7 +4,6 @@ import {
   NotFoundError,
   NotAuthorisedError,
 } from '@sanguinee06-justix/common'
-
 import { Order } from '../models/order'
 
 const router = express.Router()
