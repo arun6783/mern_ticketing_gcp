@@ -26,8 +26,9 @@ app.use(
 )
 
 app.use(currentUser)
-app.use(indexOrderRouter)
 app.use(showOrderRouter)
+app.use(indexOrderRouter)
+
 app.use(createOrderRouter)
 app.use(deleteOrderRouter)
 
