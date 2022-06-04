@@ -1,8 +1,6 @@
 import {
   Listener,
-  NotFoundError,
-  OrderCreatedEvent,
-  OrderStatus,
+  OrderCancelledEvent,
   Subjects,
 } from '@sanguinee06-justix/common'
 import { Message } from 'node-nats-streaming'
@@ -10,12 +8,12 @@ import { Ticket } from '../../models/ticket'
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher'
 import { queueGroupName } from './queue-group-name'
 
-export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
-  readonly subject = Subjects.OrderCreated
+export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
+  readonly subject = Subjects.OrderCancelled
 
   queueGroupName = queueGroupName
 
-  async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
+  async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
     //find the ticket that the order is reserving
 
     const ticket = await Ticket.findById(data.ticket.id)
@@ -23,9 +21,9 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
 
     if (!ticket) throw new Error('ticket not found')
 
-    //mark the ticket as being reserverd by setting its orderid property
+    //mark the ticket as being cancelled by removing its orderid property
 
-    ticket.set({ orderId: data.id })
+    ticket.set({ orderId: undefined })
     //save the ticket
     await ticket.save()
 
