@@ -1,6 +1,6 @@
 {
   "name": "@sanguinee06-justix/common",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "common library to help with authorization in different ticketing project",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
