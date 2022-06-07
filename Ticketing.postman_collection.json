@@ -255,7 +255,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"price\":10, \"title\": \"Testing event updated\"}",
+					"raw": "{ \"price\":10, \"title\": \"Testing order expired\"}",
 					"options": {
 						"raw": {
 							"language": "json"

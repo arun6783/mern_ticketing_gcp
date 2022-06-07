@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 import { app } from './app'
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener'
+import { OrderCreatedEventListener } from './events/listeners/order-created-event-listener'
 import { natsWrapper } from './nats-wrapper'
 
 const start = async () => {
@@ -32,18 +34,21 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client.close())
     process.on('SIGTERM', () => natsWrapper.client.close())
 
+    new OrderCancelledListener(natsWrapper.client).listen()
+    new OrderCreatedEventListener(natsWrapper.client).listen()
+
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     })
-    console.log('Connected to MongoDb')
+    console.log('Payments Connected to MongoDb')
   } catch (err) {
     console.error(err)
   }
 
   app.listen(3000, () => {
-    console.log('Listening on port 3000!!!!!!!!')
+    console.log('Payments service Listening on port 3000!!!!!!!!')
   })
 }
 
