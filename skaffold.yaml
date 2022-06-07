@@ -43,3 +43,11 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: arun6783/ticketing-expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
