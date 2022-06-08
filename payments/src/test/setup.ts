@@ -38,7 +38,7 @@ afterAll(async () => {
 })
 
 global.signin = (id = new mongoose.Types.ObjectId().toHexString()) => {
-  console.log('usersign id -', id)
+  console.log('app stripe keuy id -', process.env.STRIPE_KEY)
   // Build a JWT payload.  { id, email }
   const payload = {
     id: id,
