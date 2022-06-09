@@ -4,6 +4,7 @@ import {
   Subjects,
 } from '@sanguinee06-justix/common'
 import { Message } from 'node-nats-streaming'
+import { markAsUntransferable } from 'worker_threads'
 import { Order, OrderStatus } from '../../models/order'
 import { natsWrapper } from '../../nats-wrapper'
 import { OrderCancelledPublisher } from '../publishers/order-cancelled-publisher'
@@ -16,6 +17,9 @@ export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent
     const order = await Order.findById(data.orderId).populate('ticket')
     if (!order) {
       throw new Error('Order Not found')
+    }
+    if (order.status === OrderStatus.Complete) {
+      return msg.ack()
     }
     order.set({
       status: OrderStatus.Cancelled,
