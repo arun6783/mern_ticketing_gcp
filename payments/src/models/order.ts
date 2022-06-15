@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 import { OrderStatus } from '@sanguinee06-justix/common'
+
 interface OrderAttrs {
   id: string
+  version: number
   userId: string
   price: number
-  version: number
   status: OrderStatus
 }
 
@@ -33,7 +34,6 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: Object.values(OrderStatus),
     },
   },
   {
@@ -45,6 +45,7 @@ const orderSchema = new mongoose.Schema(
     },
   }
 )
+
 orderSchema.set('versionKey', 'version')
 orderSchema.plugin(updateIfCurrentPlugin)
 

@@ -9,8 +9,8 @@ import { Order } from '../../models/order'
 import { queueGroupName } from './queue-group-name'
 
 export class OrderCreatedEventListener extends Listener<OrderCreatedEvent> {
+  subject: Subjects.OrderCreated = Subjects.OrderCreated
   queueGroupName = queueGroupName
-  readonly subject = Subjects.OrderCreated
 
   async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
     const order = Order.build({
@@ -20,7 +20,6 @@ export class OrderCreatedEventListener extends Listener<OrderCreatedEvent> {
       userId: data.userId,
       version: data.version,
     })
-
     await order.save()
 
     msg.ack()
